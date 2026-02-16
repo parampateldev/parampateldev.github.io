@@ -40,7 +40,7 @@ const observer = new IntersectionObserver(function(entries) {
     });
 }, observerOptions);
 
-// Observe all experience cards
+// Observe experience cards (if present)
 document.querySelectorAll('.experience-card').forEach(card => {
     card.style.opacity = '0';
     card.style.transform = 'translateY(20px)';
@@ -48,12 +48,20 @@ document.querySelectorAll('.experience-card').forEach(card => {
     observer.observe(card);
 });
 
-// Observe gallery items
+// Observe gallery items (if present)
 document.querySelectorAll('.gallery-item').forEach((item, index) => {
     item.style.opacity = '0';
     item.style.transform = 'translateY(20px)';
     item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
     observer.observe(item);
+});
+
+// Observe experience cards on experiences page
+document.querySelectorAll('.exp-card').forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(card);
 });
 
 // Active navigation link on scroll
