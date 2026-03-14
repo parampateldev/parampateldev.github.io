@@ -261,7 +261,8 @@ h1, h2, h3, h4, .nav-brand, .hero-title, .page-title, .page-card h3 {
     height: 180px;
     border-radius: 50%;
     object-fit: cover;
-    object-position: center 20%;
+    /* move focal point slightly right while keeping vertical position */
+    object-position: 15% 20%;
     border: 3px solid rgba(255, 255, 255, 0.08);
     box-shadow: 
         0 0 0 1px rgba(255, 255, 255, 0.05),
@@ -1245,7 +1246,7 @@ h1, h2, h3, h4, .nav-brand, .hero-title, .page-title, .page-card h3 {
 
 /* Honors Plan Page */
 .honors-plan-page {
-    max-width: 700px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -1294,6 +1295,72 @@ h1, h2, h3, h4, .nav-brand, .hero-title, .page-title, .page-card h3 {
 .plan-link:hover {
     background: var(--accent-purple);
     color: white;
+}
+
+.table-caption {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    width: 100%;
+}
+
+.competency-table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.competency-table th,
+.competency-table td {
+    padding: 0.6rem 0.75rem;
+    text-align: left;
+    border: 1px solid var(--border-color);
+}
+
+.competency-table thead th {
+    background: rgba(139, 92, 246, 0.12);
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.competency-table .proficiency-levels th {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.competency-table .th-sub {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--text-muted);
+}
+
+.competency-table tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.competency-table tbody td:first-child {
+    font-weight: 500;
+    color: var(--text-primary);
+    min-width: 140px;
+}
+
+.competency-table td:nth-child(n+2):nth-child(-n+4) {
+    text-align: center;
+    min-width: 4rem;
+}
+
+.competency-table td:nth-child(5),
+.competency-table td:nth-child(6) {
+    min-width: 120px;
 }
 
 .plan-note {
