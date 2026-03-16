@@ -21,6 +21,14 @@
                 <li><a href="adventures.html" class="nav-link">Adventures</a></li>
                 <li><a href="honors-plan.html" class="nav-link">Honors Plan</a></li>
             </ul>
+            <div class="theme-switcher">
+                <button type="button" class="theme-switcher-btn" aria-label="Change theme" title="Theme">Theme</button>
+                <div class="theme-dropdown">
+                    <button type="button" class="theme-option" data-theme="dark">Dark</button>
+                    <button type="button" class="theme-option" data-theme="sunrise">Sunrise</button>
+                    <button type="button" class="theme-option" data-theme="sunset">Sunset</button>
+                </div>
+            </div>
         </div>
     </nav>
 
@@ -48,7 +56,7 @@
                 <div class="exp-body-full">
                     <p><strong>Context:</strong> I'm an Instructional Aide for ENGR 101, Introduction to Computers and Programming, a freshman engineering course at the University of Michigan. I provide instructional support in MATLAB and C++ through office hours, helping students with homework, labs, and projects. My role is to help them debug code, explain concepts in ways that click, and guide them through the frustration of getting something wrong before they figure it out.</p>
                     
-                    <p><strong>Engineering Competency Connections:</strong></p>
+                    <p class="competency-label"><strong>Engineering Competency Connections:</strong></p>
                     
                     <h4>Communication</h4>
                     <p>Explaining technical concepts to beginners forced me to think about how I communicate. Students come in stuck on different things. Some need the big picture first. Others want to trace through their code line by line. I had to learn to read where someone was at and adapt how I explained things. That meant dropping jargon, drawing things out, and sometimes breaking a problem into even smaller pieces than I thought was possible. Clear communication in engineering matters whether you're in a design review, writing documentation, or walking a client through a solution.</p>
@@ -82,7 +90,7 @@
                     </div>
                     <div class="exp-text">
                         <p><strong>Context:</strong> As a BAPS Youth Leader, I led the Kids Diwali Celebration with over 500 attendees. I coordinated decorations, the stage program, registration, and flow management.</p>
-                        <p><strong>Engineering Competency Connection:</strong></p>
+                        <p class="competency-label"><strong>Engineering Competency Connection:</strong></p>
                         <ul>
                             <li><strong>Leadership:</strong> I learned to delegate, trust department heads, and focus on what only I could handle instead of micromanaging.</li>
                             <li><strong>Communication:</strong> I established regular check-ins and a shared doc so everyone stayed aligned and conflicts were avoided.</li>
@@ -103,6 +111,7 @@
         </div>
     </footer>
 
+    <script src="theme.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
