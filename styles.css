@@ -114,7 +114,7 @@ h1, h2, h3, h4, .nav-brand, .hero-title, .page-title, .page-card h3 {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 0 auto;
     padding: 0 2rem;
 }
@@ -234,12 +234,12 @@ h1, h2, h3, h4, .nav-brand, .hero-title, .page-title, .page-card h3 {
     position: absolute;
     top: calc(100% + 6px);
     right: 0;
-    min-width: 130px;
-    padding: 0.35rem;
-    background: #020617; /* lock to very dark so text always visible */
-    border: 1px solid var(--border-color);
+    min-width: 140px;
+    padding: 0.4rem;
+    background: #020617; /* solid near-black so options always readable */
+    border: 1px solid rgba(15, 23, 42, 0.9);
     border-radius: 10px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.35);
     opacity: 0;
     visibility: hidden;
     transform: translateY(-6px);
@@ -259,7 +259,7 @@ h1, h2, h3, h4, .nav-brand, .hero-title, .page-title, .page-card h3 {
     padding: 0.5rem 0.75rem;
     font-size: 0.9rem;
     text-align: left;
-    color: #e5e7eb; /* light gray text for all themes */
+    color: #f9fafb; /* white text for all themes */
     background: transparent;
     border: none;
     border-radius: 6px;
@@ -270,13 +270,13 @@ h1, h2, h3, h4, .nav-brand, .hero-title, .page-title, .page-card h3 {
 
 .theme-option:hover {
     background: rgba(148, 163, 184, 0.25);
-    color: #f9fafb;
+    color: #ffffff;
 }
 
 .theme-option.active {
-    color: #22d3ee;
+    color: #ffffff;
     font-weight: 600;
-    background: rgba(15, 23, 42, 0.9);
+    background: rgba(59, 130, 246, 0.55);
 }
 
 /* Hero Section */
@@ -1219,7 +1219,7 @@ h1, h2, h3, h4, .nav-brand, .hero-title, .page-title, .page-card h3 {
     grid-template-columns: 320px 1fr;
     gap: 4rem;
     align-items: start;
-    max-width: 1100px;
+    max-width: 1350px;
     margin: 0 auto;
 }
 
@@ -1311,7 +1311,7 @@ h1, h2, h3, h4, .nav-brand, .hero-title, .page-title, .page-card h3 {
 
 /* Experiences Page */
 .experience-page {
-    max-width: 1100px;
+    max-width: 1350px;
     margin: 0 auto;
 }
 
@@ -1412,6 +1412,17 @@ h1, h2, h3, h4, .nav-brand, .hero-title, .page-title, .page-card h3 {
     margin-top: 1rem;
 }
 
+.exp-text h4 {
+    font-size: 1.2rem;
+    color: var(--accent-cyan);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.exp-text h4:first-of-type {
+    margin-top: 1rem;
+}
+
 .competency-label {
     display: inline-block;
     padding: 0.6rem 1.25rem;
@@ -1425,6 +1436,11 @@ h1, h2, h3, h4, .nav-brand, .hero-title, .page-title, .page-card h3 {
 
 .exp-text .competency-label {
     margin-top: 1rem;
+    color: var(--accent-cyan);
+}
+
+.competency-label strong {
+    color: inherit;
 }
 
 .exp-meta-tags {
@@ -1436,8 +1452,17 @@ h1, h2, h3, h4, .nav-brand, .hero-title, .page-title, .page-card h3 {
 
 /* Honors Plan Page */
 .honors-plan-page {
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
+}
+
+.honors-plan-page .container {
+    max-width: 1500px;
+}
+
+.honors-plan-page.page-content {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
 }
 
 .plan-card {
@@ -1495,10 +1520,12 @@ h1, h2, h3, h4, .nav-brand, .hero-title, .page-title, .page-card h3 {
 
 .table-wrapper {
     overflow-x: auto;
+    overflow-y: auto;
     margin: 1.5rem 0;
     border-radius: 12px;
     border: 1px solid var(--border-color);
     width: 100%;
+    max-height: 420px;
 }
 
 .competency-table {
@@ -1506,19 +1533,46 @@ h1, h2, h3, h4, .nav-brand, .hero-title, .page-title, .page-card h3 {
     min-width: 900px;
     border-collapse: collapse;
     font-size: 0.9rem;
+    --competency-header-row1-height: 58px;
 }
 
 .competency-table th,
 .competency-table td {
     padding: 0.6rem 0.75rem;
     text-align: left;
-    border: 1px solid var(--border-color);
+    border: 1px solid rgba(148, 163, 184, 0.3);
 }
 
 .competency-table thead th {
-    background: rgba(139, 92, 246, 0.12);
+    background: rgba(15, 23, 42, 0.95);
     color: var(--text-primary);
     font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+[data-theme="sunrise"] .competency-table thead th,
+[data-theme="sunset"] .competency-table thead th {
+    background: rgba(254, 243, 199, 0.98);
+    color: #1f2933;
+}
+
+.competency-table thead tr:first-child th {
+    height: var(--competency-header-row1-height);
+    vertical-align: middle;
+}
+
+.competency-table thead .proficiency-levels th {
+    top: var(--competency-header-row1-height);
+    z-index: 3;
+    background: rgba(15, 23, 42, 0.98);
+}
+
+[data-theme="sunrise"] .competency-table thead .proficiency-levels th,
+[data-theme="sunset"] .competency-table thead .proficiency-levels th {
+    background: rgba(254, 243, 199, 0.98);
+    color: #1f2933;
 }
 
 .competency-table .proficiency-levels th {
@@ -1533,8 +1587,22 @@ h1, h2, h3, h4, .nav-brand, .hero-title, .page-title, .page-card h3 {
     color: var(--text-muted);
 }
 
+.competency-table tbody tr:nth-child(odd) {
+    background: rgba(30, 64, 175, 0.25);
+}
+
 .competency-table tbody tr:nth-child(even) {
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(15, 23, 42, 0.9);
+}
+
+[data-theme="sunrise"] .competency-table tbody tr:nth-child(odd),
+[data-theme="sunset"] .competency-table tbody tr:nth-child(odd) {
+    background: rgba(254, 243, 199, 0.25);
+}
+
+[data-theme="sunrise"] .competency-table tbody tr:nth-child(even),
+[data-theme="sunset"] .competency-table tbody tr:nth-child(even) {
+    background: rgba(250, 204, 21, 0.3);
 }
 
 .competency-table tbody td:first-child {
@@ -1545,7 +1613,11 @@ h1, h2, h3, h4, .nav-brand, .hero-title, .page-title, .page-card h3 {
 
 .competency-table td:nth-child(n+2):nth-child(-n+4) {
     text-align: center;
-    min-width: 4rem;
+    min-width: 2rem;
+    width: 2.1rem;
+    padding: 0.35rem 0.25rem;
+    border-left-color: rgba(148, 163, 184, 0.5);
+    border-right-color: rgba(148, 163, 184, 0.5);
 }
 
 .competency-table td:nth-child(5),
