@@ -1,88 +1,23 @@
-// Auto-update footer year
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-// Navbar background on scroll
-window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-    } else {
-        navbar.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
     }
-});
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
-// Intersection Observer for fade-in animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Observe experience cards (if present)
-document.querySelectorAll('.experience-card').forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(card);
-});
-
-// Observe gallery items (if present)
-document.querySelectorAll('.gallery-item').forEach((item, index) => {
-    item.style.opacity = '0';
-    item.style.transform = 'translateY(20px)';
-    item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-    observer.observe(item);
-});
-
-// Observe experience cards on experiences page
-document.querySelectorAll('.exp-card').forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(card);
-});
-
-// Active navigation link on scroll
-window.addEventListener('scroll', function() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    let current = '';
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (window.pageYOffset >= sectionTop - 200) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    navLinks.forEach(link => {
-        link.style.color = '';
-        if (link.getAttribute('href') === `#${current}`) {
-            link.style.color = 'var(--primary-color)';
-        }
-    });
-});
-
+const canvas = document.getElementById('field');
+const ctx = canvas.getContext('2d');
+let w, h, mx = 0.68, my = 0.3, tx = mx, ty = my;
+const blobs = [
+  {x:.72,y:.28,r:.32,c:'89,123,255',a:.2,s:.00038},
+  {x:.26,y:.62,r:.26,c:'201,255,74',a:.12,s:.00025},
+  {x:.84,y:.78,r:.2,c:'255,112,72',a:.1,s:.0003}
+];
+function resize(){const d=Math.min(devicePixelRatio,2);w=innerWidth;h=innerHeight;canvas.width=w*d;canvas.height=h*d;canvas.style.width=w+'px';canvas.style.height=h+'px';ctx.setTransform(d,0,0,d,0,0)}
+function draw(t){ctx.clearRect(0,0,w,h);mx+=(tx-mx)*.025;my+=(ty-my)*.025;blobs.forEach((b,i)=>{const x=(b.x+Math.sin(t*b.s+i)*.08+(mx-.5)*(i===0?.16:.05))*w;const y=(b.y+Math.cos(t*b.s*.8+i)*.07+(my-.5)*(i===0?.14:.04))*h;const r=b.r*Math.max(w,h);const g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,`rgba(${b.c},${b.a})`);g.addColorStop(.52,`rgba(${b.c},${b.a*.45})`);g.addColorStop(1,`rgba(${b.c},0)`);ctx.fillStyle=g;ctx.fillRect(0,0,w,h)});requestAnimationFrame(draw)}
+addEventListener('resize',resize);addEventListener('pointermove',e=>{tx=e.clientX/w;ty=e.clientY/h});resize();if(!matchMedia('(prefers-reduced-motion: reduce)').matches)requestAnimationFrame(draw);
