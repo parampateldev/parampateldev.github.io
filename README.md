@@ -25,4 +25,4 @@ Then open http://localhost:8000
 python3 pushChanges.py "your commit message"
 ```
 
-Go Blue.
+Go Blue 〽️
