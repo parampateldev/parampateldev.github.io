@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philosophy | Param Patel MPortfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-brand">Param Patel</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About Me</a></li>
+                <li><a href="experiences.html" class="nav-link">Experiences</a></li>
+                <li><a href="philosophy.html" class="nav-link active">Philosophy</a></li>
+                <li><a href="honors-plan.html" class="nav-link">Honors Plan</a></li>
+                <li><a href="honors-focus.html" class="nav-link">Honors Focus Area</a></li>
+                <li><a href="adventures.html" class="nav-link">Adventures</a></li>
+            </ul>
+            <div class="theme-switcher">
+                <button type="button" class="theme-switcher-btn" aria-label="Change theme" title="Theme">Theme</button>
+                <div class="theme-dropdown">
+                    <button type="button" class="theme-option" data-theme="dark">Dark</button>
+                    <button type="button" class="theme-option" data-theme="sunrise">Sunrise</button>
+                    <button type="button" class="theme-option" data-theme="sunset">Sunset</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">My Engineering Philosophy</h1>
+            <p class="page-subtitle">Honors Seminar</p>
+        </div>
+    </section>
+
+    <section class="page-content philosophy-page">
+        <div class="container">
+            <article class="philosophy-card">
+                <p>I think engineering is about using what I learn to make things work better for real people. Not just getting programs to run, but making it work for whoever is on the other end of it. The more I build, the more I realize the hard part usually isn't the technical part. It's figuring out who I'm actually building for.</p>
+
+                <p>I first saw this at BAPS Akshardham, where I built a warehouse management system from scratch. I went in thinking the challenge would be the Flask app and the database. It wasn't. The real challenge was understanding how inventory actually moved through the warehouse and what the people using the system needed every day. Switching from LIFO to FIFO looked small on paper, but it was the change that mattered to them. If I had only designed for what made sense to me as the programmer, the system would have worked fine and still been wrong.</p>
+
+                <p>At AWS this past summer I saw the same idea at a much bigger scale. I built a canary testing framework that constantly checks more than 45 Glue, Lake Formation, and Catalog APIs across multiple regions. No customer will ever see it. Its whole job is to catch problems before they do. A lot of the most important engineering work is invisible, and building something reliable is a way of respecting the people who depend on it.</p>
+
+                <p>During a recent consulting project, I worked on AppBreakdown, a gamified app that teaches people how apps are built. This taught me to ask who I might be leaving out. As the technical consultant, my recommendations shaped what the app could do, and looking back, we mostly designed for people like us. Nobody meant to leave anyone out, and that is exactly why I want asking that question to become a habit.</p>
+
+                <p>My role as an ENGR 101 Instructional Aide keeps me grounded. When a student is stuck on a programming bug, giving them the answer is easy. Helping them figure it out on their own is harder and way more useful. Some students come in convinced they aren't built for "coding," and one good office hours visit can change that. I try to build things the same way I teach, so other people can understand them, use them, and keep building on them after I move on.</p>
+
+                <p>So my philosophy comes down to a few things. Start with the people who will actually use what I build. Ask who's missing before I call something done. Care about the parts nobody sees, because that's usually where things break. And keep learning from the people around me, because I've never built anything good completely on my own.</p>
+
+                <p>I can relate it to one of my favorite sports: basketball. Everyone remembers the flashy dunk, but a lot of games are won by the person who plays really strong defense and the player who notices who is open for a pass. That is the kind of engineer I want to be.</p>
+
+                <blockquote class="philosophy-pullquote">That is the kind of engineer I want to be.</blockquote>
+            </article>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; <span id="year"></span> Param Patel. University of Michigan MPortfolio.</p>
+        </div>
+    </footer>
+
+    <script src="theme.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

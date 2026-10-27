@@ -1161,19 +1161,12 @@ h1, h2, h3, h4, .nav-brand, .hero-title, .page-title, .page-card h3 {
     margin-right: auto;
 }
 
-/* Center the fifth home card on its own row */
-/* Center the fifth home card on its own row */
-.hero-nav-cards .page-card:nth-child(5) {
-    grid-column: 1 / -1;
-    max-width: 400px;
-    justify-self: center;
-}
-
 .page-card:nth-child(1) { animation: fadeInUp 0.8s ease 0.1s both; }
 .page-card:nth-child(2) { animation: fadeInUp 0.8s ease 0.2s both; }
 .page-card:nth-child(3) { animation: fadeInUp 0.8s ease 0.3s both; }
 .page-card:nth-child(4) { animation: fadeInUp 0.8s ease 0.4s both; }
 .page-card:nth-child(5) { animation: fadeInUp 0.8s ease 0.5s both; }
+.page-card:nth-child(6) { animation: fadeInUp 0.8s ease 0.6s both; }
 
 .page-card {
     background: var(--card-bg);
@@ -1202,6 +1195,8 @@ h1, h2, h3, h4, .nav-brand, .hero-title, .page-title, .page-card h3 {
 .page-card:nth-child(2):hover { box-shadow: 0 20px 60px -15px rgba(0,0,0,0.5), 0 0 40px -10px rgba(96,165,250,0.2); }
 .page-card:nth-child(3):hover { box-shadow: 0 20px 60px -15px rgba(0,0,0,0.5), 0 0 40px -10px rgba(251,146,60,0.2); }
 .page-card:nth-child(4):hover { box-shadow: 0 20px 60px -15px rgba(0,0,0,0.5), 0 0 40px -10px rgba(167,139,250,0.2); }
+.page-card:nth-child(5):hover { box-shadow: 0 20px 60px -15px rgba(0,0,0,0.5), 0 0 40px -10px rgba(52,211,153,0.2); }
+.page-card:nth-child(6):hover { box-shadow: 0 20px 60px -15px rgba(0,0,0,0.5), 0 0 40px -10px rgba(244,114,182,0.2); }
 
 .page-card-icon {
     font-size: 2.75rem;
@@ -1662,6 +1657,151 @@ h1, h2, h3, h4, .nav-brand, .hero-title, .page-title, .page-card h3 {
 .smart-goal p {
     margin: 0;
     font-size: 1rem;
+}
+
+.goal-progress {
+    margin-top: 0.85rem !important;
+    font-size: 0.92rem !important;
+    color: var(--text-muted) !important;
+}
+
+.proficiency-x {
+    text-align: center;
+    font-weight: 800;
+    color: var(--accent-cyan);
+    font-size: 1.15rem;
+}
+
+/* Philosophy page */
+.philosophy-page {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.philosophy-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 2.5rem 2.25rem;
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--accent-cyan);
+    max-width: 720px;
+    margin: 0 auto;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+}
+
+.philosophy-card p {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+}
+
+.philosophy-pullquote {
+    margin: 2rem 0 0;
+    padding: 1rem 0 1rem 1.25rem;
+    border-left: 4px solid var(--accent-blue);
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.35rem;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+/* Experiences extras */
+.exp-meta {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin: 0 0 1rem;
+}
+
+.exp-jump {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.exp-jump-label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.exp-jump a {
+    color: var(--accent-cyan);
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 0.35rem 0.85rem;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.exp-jump a:hover {
+    border-color: var(--accent-cyan);
+}
+
+.coverage-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-color);
+}
+
+.coverage-card h2 {
+    font-size: 1.4rem;
+    margin-bottom: 0.35rem;
+    color: var(--text-primary);
+}
+
+.coverage-note {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+.coverage-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.coverage-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 720px;
+    font-size: 0.9rem;
+}
+
+.coverage-table th,
+.coverage-table td {
+    border: 1px solid var(--border-color);
+    padding: 0.55rem 0.65rem;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.coverage-table th:first-child,
+.coverage-table td:first-child {
+    text-align: left;
+    min-width: 180px;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.coverage-table th {
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.coverage-table td:not(:first-child) {
+    color: var(--accent-cyan);
+    font-weight: 700;
 }
 
 /* Animations */
