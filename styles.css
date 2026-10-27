@@ -1,3 +1,8 @@
+/* Instant-feeling multi-page navigations in supporting browsers */
+@view-transition {
+    navigation: auto;
+}
+
 /* Reset and Base Styles */
 * {
     margin: 0;
@@ -1161,12 +1166,12 @@ h1, h2, h3, h4, .nav-brand, .hero-title, .page-title, .page-card h3 {
     margin-right: auto;
 }
 
-.page-card:nth-child(1) { animation: fadeInUp 0.8s ease 0.1s both; }
-.page-card:nth-child(2) { animation: fadeInUp 0.8s ease 0.2s both; }
-.page-card:nth-child(3) { animation: fadeInUp 0.8s ease 0.3s both; }
-.page-card:nth-child(4) { animation: fadeInUp 0.8s ease 0.4s both; }
-.page-card:nth-child(5) { animation: fadeInUp 0.8s ease 0.5s both; }
-.page-card:nth-child(6) { animation: fadeInUp 0.8s ease 0.6s both; }
+.page-card:nth-child(1) { animation: fadeInUp 0.35s ease 0.02s both; }
+.page-card:nth-child(2) { animation: fadeInUp 0.35s ease 0.04s both; }
+.page-card:nth-child(3) { animation: fadeInUp 0.35s ease 0.06s both; }
+.page-card:nth-child(4) { animation: fadeInUp 0.35s ease 0.08s both; }
+.page-card:nth-child(5) { animation: fadeInUp 0.35s ease 0.1s both; }
+.page-card:nth-child(6) { animation: fadeInUp 0.35s ease 0.12s both; }
 
 .page-card {
     background: var(--card-bg);

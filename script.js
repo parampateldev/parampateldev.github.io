@@ -1,88 +1,88 @@
-// Auto-update footer year
-document.getElementById('year').textContent = new Date().getFullYear();
+(function () {
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  // Smooth scroll for same-page anchors
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
+      const href = this.getAttribute('href');
+      if (!href || href === '#') return;
+      const target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
-});
+  });
 
-// Navbar background on scroll
-window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-    } else {
-        navbar.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
+  // Prefetch internal pages so the next click is usually already cached
+  const prefetched = new Set();
+
+  function sameOriginPage(href) {
+    try {
+      const url = new URL(href, window.location.href);
+      if (url.origin !== window.location.origin) return null;
+      if (url.hash && url.pathname === window.location.pathname) return null;
+      const path = url.pathname;
+      if (!path.endsWith('.html') && path !== '/' && !path.endsWith('/')) return null;
+      return url.href.split('#')[0];
+    } catch {
+      return null;
     }
-});
+  }
 
-// Intersection Observer for fade-in animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
+  function prefetch(href) {
+    const page = sameOriginPage(href);
+    if (!page || prefetched.has(page) || page === window.location.href.split('#')[0]) return;
+    prefetched.add(page);
 
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
+    const link = document.createElement('link');
+    link.rel = 'prefetch';
+    link.href = page;
+    link.as = 'document';
+    document.head.appendChild(link);
+
+    // Also warm the HTTP cache with a low-priority fetch
+    if (window.fetch) {
+      fetch(page, { priority: 'low', credentials: 'same-origin' }).catch(() => {});
+    }
+  }
+
+  function prefetchAllNav() {
+    document.querySelectorAll('a.nav-link, a.page-card, a.exp-jump a, .exp-jump a').forEach((a) => {
+      const href = a.getAttribute('href');
+      if (href) prefetch(href);
     });
-}, observerOptions);
+  }
 
-// Observe experience cards (if present)
-document.querySelectorAll('.experience-card').forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(card);
-});
+  document.querySelectorAll('a[href]').forEach((a) => {
+    const href = a.getAttribute('href');
+    if (!sameOriginPage(href)) return;
+    a.addEventListener('pointerenter', () => prefetch(href), { once: true });
+    a.addEventListener('focus', () => prefetch(href), { once: true });
+  });
 
-// Observe gallery items (if present)
-document.querySelectorAll('.gallery-item').forEach((item, index) => {
-    item.style.opacity = '0';
-    item.style.transform = 'translateY(20px)';
-    item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-    observer.observe(item);
-});
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(prefetchAllNav, { timeout: 1200 });
+  } else {
+    setTimeout(prefetchAllNav, 400);
+  }
 
-// Observe experience cards on experiences page
-document.querySelectorAll('.exp-card').forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(card);
-});
-
-// Active navigation link on scroll
-window.addEventListener('scroll', function() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    let current = '';
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (window.pageYOffset >= sectionTop - 200) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    navLinks.forEach(link => {
-        link.style.color = '';
-        if (link.getAttribute('href') === `#${current}`) {
-            link.style.color = 'var(--primary-color)';
-        }
-    });
-});
-
+  // Light navbar shadow after scrolling a bit
+  const navbar = document.querySelector('.navbar');
+  if (navbar) {
+    let ticking = false;
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          navbar.style.boxShadow =
+            window.scrollY > 50 ? '0 2px 10px rgba(0, 0, 0, 0.1)' : '0 1px 3px rgba(0, 0, 0, 0.1)';
+          ticking = false;
+        });
+      },
+      { passive: true }
+    );
+  }
+})();
